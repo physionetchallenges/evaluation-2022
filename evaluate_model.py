@@ -114,7 +114,7 @@ def enforce_positives(outputs, classes, positive_class):
     j = classes.index(positive_class)
 
     for i in range(num_patients):
-        if np.sum(outputs[i, :])!=1:
+        if np.sum(outputs[i, :]) != 1:
             outputs[i, :] = 0
             outputs[i, j] = 1
     return outputs
@@ -276,7 +276,8 @@ def compute_f_measure(labels, outputs):
 def compute_challenge_score(labels, outputs, classes):
     # Define costs. Load these costs from an external file instead of defining them here.
     c_algorithm =     1
-    c_expert    =   250
+    c_expert_1  =   250
+    c_expert_2  =   500
     c_treatment =  1000
     c_error     = 10000
     alpha       =   0.5
@@ -289,29 +290,33 @@ def compute_challenge_score(labels, outputs, classes):
     idx_unknown = classes.index('Unknown')
     idx_negative = classes.index('Absent')
 
-    n_tp  = A[idx_positive, idx_positive]
-    n_fpu = A[idx_positive, idx_unknown ]
-    n_fp  = A[idx_positive, idx_negative]
-    n_fup = A[idx_unknown , idx_positive]
-    n_tu  = A[idx_unknown , idx_unknown ]
-    n_fun = A[idx_unknown , idx_negative]
-    n_fn  = A[idx_negative, idx_positive]
-    n_fnu = A[idx_negative, idx_unknown ]
-    n_tn  = A[idx_negative, idx_negative]
+    n_pp = A[idx_positive, idx_positive]
+    n_pu = A[idx_positive, idx_unknown ]
+    n_pn = A[idx_positive, idx_negative]
+    n_up = A[idx_unknown , idx_positive]
+    n_uu = A[idx_unknown , idx_unknown ]
+    n_un = A[idx_unknown , idx_negative]
+    n_np = A[idx_negative, idx_positive]
+    n_nu = A[idx_negative, idx_unknown ]
+    n_nn = A[idx_negative, idx_negative]
 
-    n_positive = n_tp  + n_fup + n_fn
-    n_unknown  = n_fpu + n_tu  + n_fnu
-    n_negative = n_fp  + n_fun + n_tn
+    n_positive = n_pp + n_up + n_np
+    n_unknown  = n_pu + n_uu + n_nu
+    n_negative = n_pn + n_un + n_nn
 
     n_total = n_positive + n_unknown + n_negative
 
     total_score = c_algorithm * n_total \
-        + c_expert * (n_tp + 2 * n_fpu + n_fp + n_fup + 2 * n_tu + n_fun) \
-        + c_treatment * (n_tp + alpha * n_fpu + n_fup + alpha * n_tu) \
-        + c_error * (n_fn + alpha * n_fnu)
-    challenge_score = total_score / n_total
+        + c_expert_1 * (n_pp + n_pu + n_pn + n_up + n_uu + n_un) \
+        + c_expert_2 * (n_pu + n_uu) \
+        + c_treatment * (n_pp + alpha * n_pu + n_up + alpha * n_uu) \
+        + c_error * (n_np + alpha * n_nu)
+    if n_total > 0:
+        mean_score = total_score / n_total
+    else:
+        mean_score = float('nan')
 
-    return challenge_score
+    return mean_score
 
 if __name__ == '__main__':
     classes, auroc, auprc, auroc_classes, auprc_classes, accuracy, f_measure, f_measure_classes, challenge_score = evaluate_model(sys.argv[1], sys.argv[2])
