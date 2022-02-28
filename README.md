@@ -10,7 +10,12 @@ You can run the Python evaluation code by installing the NumPy package and runni
 
     python evaluate_model.py labels outputs scores.csv class_scores.csv
 
-where `labels` is a folder with labels for the data, such as the training database on the PhysioNet webpage; `outputs` is a folder containing files with your model's outputs ofr th edata; `scores.csv` (optional) is a collection of scores for your model; and `class_scores.csv` (optional) is a collection of per-class scores for your model.
+where
+
+- `labels` (input; required) is a folder with labels for the data, such as the [training data](https://physionetchallenges.org/2022/#data) on the PhysioNet webpage;
+- `outputs` (input; required) is a folder containing files with your model's outputs for the data;
+- `scores.csv` (output; optional) is a collection of scores for your model; and
+- `class_scores.csv` (output; optional) is a collection of per-class scores for your model.
 
 ## MATLAB
 
@@ -18,7 +23,12 @@ You can run the MATLAB evaluation code by installing Python and the NumPy packag
 
     evaluate_model('labels', 'outputs', 'scores.csv', 'class_scores.csv')
 
-where `labels` is a folder containing files with the labels for the data, such as the training database on the PhysioNet webpage; `outputs` is a folder containing files with outputs produced by your model for the data; `scores.csv` (optional) is a collection of scores for your model; and `class_scores.csv` (optional) is a collection of per-class scores for your model.
+where
+
+- `labels` (input; required) is a folder containing files with the labels for the data, such as the [training data](https://physionetchallenges.org/2022/#data) on the PhysioNet webpage;
+- `outputs` (input; required) is a folder containing files with outputs produced by your model for the data;
+- `scores.csv` (output; optional) is a collection of scores for your model; and
+- `class_scores.csv` (output; optional) is a collection of per-class scores for your model.
 
 ## Troubleshooting
 
@@ -30,7 +40,7 @@ Please see the [Challenge website](https://physionetchallenges.org/2022/) for mo
 
 ## Useful links
 
-* [Challenge website](https://physionetchallenges.org/2022/)
-* [MATLAB example classifier code](https://github.com/physionetchallenges/matlab-classifier-2022)
-* [Python example classifier code](https://github.com/physionetchallenges/python-classifier-2022)
-* [Frequently asked questions (FAQ) for this year's Challenge](https://physionetchallenges.org/2022/faq/) 
+- [Challenge website](https://physionetchallenges.org/2022/)
+- [MATLAB example classifier code](https://github.com/physionetchallenges/matlab-classifier-2022)
+- [Python example classifier code](https://github.com/physionetchallenges/python-classifier-2022)
+- [Frequently asked questions (FAQ) for this year's Challenge](https://physionetchallenges.org/2022/faq/)
