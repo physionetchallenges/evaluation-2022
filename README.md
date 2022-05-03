@@ -2,33 +2,31 @@
 
 This repository contains the Python and MATLAB evaluation code for the George B. Moody PhysioNet Challenge 2022.
 
-The `evaluate_model` script evaluates the output of your classifier using the evaluation metric that is described on the [webpage](https://physionetchallenges.org/2022/) for the 2022 Challenge. While this script reports multiple evaluation metrics, we use the last score (`Challenge`) to rank your model.
+The `evaluate_model` script evaluates the outputs of your classifiers using the evaluation metric that is described on the [webpage](https://physionetchallenges.org/2022/) for the 2022 Challenge. This script reports multiple evaluation metrics, so check the [scoring section](https://physionetchallenges.org/2022/#scoring) of the webpage to see how we evaluate and rank your classifiers.
 
 ## Python
 
 You can run the Python evaluation code by installing the NumPy package and running the following command in your terminal:
 
-    python evaluate_model.py labels outputs scores.csv class_scores.csv
+    python evaluate_model.py labels outputs scores.csv
 
 where
 
 - `labels` (input; required) is a folder with labels for the data, such as the [training data](https://physionetchallenges.org/2022/#data) on the PhysioNet webpage;
-- `outputs` (input; required) is a folder containing files with your model's outputs for the data;
-- `scores.csv` (output; optional) is a collection of scores for your model; and
-- `class_scores.csv` (output; optional) is a collection of per-class scores for your model.
+- `outputs` (input; required) is a folder containing files with your model's outputs for the data; and
+- `scores.csv` (output; optional) is a collection of scores for your model.
 
 ## MATLAB
 
 You can run the MATLAB evaluation code by installing Python and the NumPy package and running the following command in MATLAB:
 
-    evaluate_model('labels', 'outputs', 'scores.csv', 'class_scores.csv')
+    evaluate_model('labels', 'outputs', 'scores.csv')
 
 where
 
 - `labels` (input; required) is a folder containing files with the labels for the data, such as the [training data](https://physionetchallenges.org/2022/#data) on the PhysioNet webpage;
-- `outputs` (input; required) is a folder containing files with outputs produced by your model for the data;
-- `scores.csv` (output; optional) is a collection of scores for your model; and
-- `class_scores.csv` (output; optional) is a collection of per-class scores for your model.
+- `outputs` (input; required) is a folder containing files with outputs produced by your model for the data; and
+- `scores.csv` (output; optional) is a collection of scores for your model.
 
 ## Troubleshooting
 
