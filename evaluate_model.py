@@ -403,7 +403,7 @@ if __name__ == '__main__':
     murmur_scores, outcome_scores = evaluate_model(sys.argv[1], sys.argv[2])
 
     classes, auroc, auprc, auroc_classes, auprc_classes, f_measure, f_measure_classes, accuracy, accuracy_classes, weighted_accuracy, challenge_metric = murmur_scores
-    murmur_output_string = 'AUROC,AUPRC,F-measure,Accuracy,Weighted Accuracy,Challenge Metric\n{:.3f},{:.3f},{:.3f},{:.3f},{:.3f},{:.3f}\n'.format(auroc, auprc, f_measure, accuracy, weighted_accuracy, challenge_metric)
+    murmur_output_string = 'AUROC,AUPRC,F-measure,Accuracy,Weighted Accuracy,Cost\n{:.3f},{:.3f},{:.3f},{:.3f},{:.3f},{:.3f}\n'.format(auroc, auprc, f_measure, accuracy, weighted_accuracy, challenge_metric)
     murmur_class_output_string = 'Classes,{}\nAUROC,{}\nAUPRC,{}\nF-measure,{}\nAccuracy,{}\n'.format(
         ','.join(classes),
         ','.join('{:.3f}'.format(x) for x in auroc_classes),
@@ -412,7 +412,7 @@ if __name__ == '__main__':
         ','.join('{:.3f}'.format(x) for x in accuracy_classes))
 
     classes, auroc, auprc, auroc_classes, auprc_classes, f_measure, f_measure_classes, accuracy, accuracy_classes, weighted_accuracy, challenge_metric = outcome_scores
-    outcome_output_string = 'AUROC,AUPRC,F-measure,Accuracy,Weighted Accuracy,Challenge Metric\n{:.3f},{:.3f},{:.3f},{:.3f},{:.3f},{:.3f}\n'.format(auroc, auprc, f_measure, accuracy, weighted_accuracy, challenge_metric)
+    outcome_output_string = 'AUROC,AUPRC,F-measure,Accuracy,Weighted Accuracy,Cost\n{:.3f},{:.3f},{:.3f},{:.3f},{:.3f},{:.3f}\n'.format(auroc, auprc, f_measure, accuracy, weighted_accuracy, challenge_metric)
     outcome_class_output_string = 'Classes,{}\nAUROC,{}\nAUPRC,{}\nF-measure,{}\nAccuracy,{}\n'.format(
         ','.join(classes),
         ','.join('{:.3f}'.format(x) for x in auroc_classes),
